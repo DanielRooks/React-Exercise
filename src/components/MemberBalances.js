@@ -24,15 +24,6 @@ class MemberBalances extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        blockFire: false,
-        blockFlood: false,
-        blockPower: false,
-        blockMedical: false,
-  
-        blockLow: false,
-        blockMedium: false,
-        blockHigh: false,
-        blockCritical: false,
 
         selectedMember: this.props.selectedMember,
         buttonClicked: false,
@@ -44,16 +35,6 @@ class MemberBalances extends React.Component {
       this.closeMemberHistory = this.closeMemberHistory.bind(this);
     }
   
-    fireChangeState() {this.setState({blockFire: !this.state.blockFire});}
-    floodChangeState() {this.setState({blockFlood: !this.state.blockFlood});}
-    powerChangeState() {this.setState({blockPower: !this.state.blockPower});}
-    medicalChangeState() {this.setState({blockMedical: !this.state.blockMedical});}
-  
-    lowChangeState() {this.setState({blockLow: !this.state.blockLow});}
-    mediumChangeState() {this.setState({blockMedium: !this.state.blockMedium});}
-    highChangeState() {this.setState({blockHigh: !this.state.blockHigh});}
-    criticalChangeState() {this.setState({blockCritical: !this.state.blockCritical});}
-
     openMemberHistory = (event, id) => {
       event.preventDefault();
       this.setState({selectedMember: id});
@@ -84,13 +65,13 @@ class MemberBalances extends React.Component {
       var totalDebit = 0;
       for (var i = 0; i < this.props.members.length; i++) {
         for (var j = 0; j < this.props.members[i].credit.length; j++) {
-          totalCredit += this.props.members[i].credit[j].amount;
+          totalCredit += Number(this.props.members[i].credit[j].amount);
         }
         for (var j = 0; j < this.props.members[i].debit.length; j++) {
-          totalDebit += this.props.members[i].debit[j].amount;
+          totalDebit += Number(this.props.members[i].debit[j].amount);
         }
 
-        this.props.members[i].balance = totalDebit - totalCredit;
+        this.props.members[i].balance = Number(totalDebit) - Number(totalCredit);
 
         totalCredit = 0;
         totalDebit = 0;
@@ -118,7 +99,7 @@ class MemberBalances extends React.Component {
                     <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Home</NavLink>
                   </div>
                   <div class = "col page-links-bar">
-                    <NavLink to="/MemberBalances" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav" onClick={(event) => this.closeMemberHistory(event)}>Back</NavLink>
+                    <NavLink to="/MemberBalances" class = "page-link" exact={true} id = "nav" onClick={(event) => this.closeMemberHistory(event)}>Back</NavLink>
                   </div>
                 </div>
               </h1>
@@ -136,8 +117,6 @@ class MemberBalances extends React.Component {
                           <div class = "col" id = "profile-info">
                               <b>{this.state.membersSorted[this.state.selectedMember].name} <br /></b>
                               Balance: {this.state.membersSorted[this.state.selectedMember].balance} <br />
-                              Problem: {this.state.membersSorted[this.state.selectedMember].problem} <br />
-                              Priority: {this.state.membersSorted[this.state.selectedMember].priority} <br />
                           </div>
                       </div>
                       <div class = "row" id = "live-row-feed">
@@ -146,11 +125,13 @@ class MemberBalances extends React.Component {
                           </div>
                       </div>
                   </div>
-                  <div id = "whole-post-selected">
+                  <div id = "whole-post-member">
                       <div><br/><br/><br /></div>
                       <div class = "row" id = "live-row-feed">
                           <div class = "col" id = "profile-info">
                               <b>Debit List:<br /><br /></b>
+                              {this.state.membersSorted[this.state.selectedMember].debit.length > 0 ? (
+                              <div>
                               {this.state.membersSorted[this.state.selectedMember].debit.map(
                               ({amount,message}) =>
                               <div>
@@ -159,15 +140,21 @@ class MemberBalances extends React.Component {
                                   <b>Transaction Description:</b><br />{" " + message}<br />
                                 </div><br />
                               </div>
-                              )} <br /><br /><br /><br />
+                              )}
+                              </div>
+                              ) : (
+                                <div id = "transaction-listing">No Debit Transactions To Show</div>
+                              )} <br /><br />
                           </div>
                       </div>
                   </div>
-                  <div id = "whole-post-selected">
+                  <div id = "whole-post-member">
                       <div><br/><br/><br /></div>
                       <div class = "row" id = "live-row-feed">
                           <div class = "col" id = "profile-info">
                               <b>Credit List:<br /><br /></b>
+                              {this.state.membersSorted[this.state.selectedMember].credit.length > 0 ? (
+                              <div>
                               {this.state.membersSorted[this.state.selectedMember].credit.map(
                               ({amount,message}) =>
                               <div>
@@ -176,7 +163,11 @@ class MemberBalances extends React.Component {
                                   <b>Transaction Description:</b><br />{" " + message}<br />
                                 </div><br />
                               </div>
-                              )} <br /><br /><br /><br />
+                              )}
+                              </div>
+                              ) : (
+                                <div id = "transaction-listing">No Credit Transactions To Show</div>
+                              )} <br /><br />
                           </div>
                       </div>
                   </div>
@@ -217,6 +208,8 @@ class MemberBalances extends React.Component {
               </div>
             </div>
             <div class = "col" id = "live-col-feed">
+              {this.state.membersSorted.length > 0 ? (
+                <div>
                 {this.state.membersSorted.map( 
                 ({name,image,content,problem,priority,debit,credit,balance,id}, index) => 
                 <div id = "whole-post" key={id}>
@@ -230,13 +223,11 @@ class MemberBalances extends React.Component {
                       <div class = "col" id = "profile-info">
                           <b>{name} <br /></b>
                           Balance: {balance} <br />
-                          Problem: {problem} <br />
-                          Priority: {priority} <br />
                       </div>
                     </div>
                     <div class = "row" id = "live-row-feed">
                       <div class = "col" id = "profile-msg">
-                        <button onClick={(event) => this.openMemberHistory(event, index)}>
+                        <button onClick={(event) => this.openMemberHistory(event, index)} id = "submission-button">
                           Open History
                         </button>
                       </div>
@@ -247,6 +238,10 @@ class MemberBalances extends React.Component {
                       </div>
                     </div>
                 </div>
+                )}
+                </div>
+                ) : (
+                  <div id = "transaction-listing">No Members To Show</div>
                 )}
             </div>
             </div>

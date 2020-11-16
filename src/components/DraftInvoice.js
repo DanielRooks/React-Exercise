@@ -40,7 +40,7 @@ class DraftInvoice extends React.Component {
     }
 
     selectMembers(event) {
-        if (!this.state.selectedMembers.includes(event.target.value)){
+        if (!this.state.selectedMembers.includes(event.target.value) && event.target.value != -1){
             this.setState({selectedMembers: [...this.state.selectedMembers, event.target.value]});
         }
     }
@@ -60,9 +60,14 @@ class DraftInvoice extends React.Component {
 
     submitSelected = (event) => {
         event.preventDefault();
+        var totalAmount = 0;
+        for (var i = 0; i < this.state.invoiceExpenses.length; i++) {
+            totalAmount += Number(this.state.invoiceExpenses[i].amount);
+        }
         this.state.invoices.push({
             names: this.state.selectedMembers,
-            expenses: this.state.invoiceExpenses
+            expenses: this.state.invoiceExpenses,
+            total: totalAmount
         })
         this.setState({formSubmitted: true});
     }
@@ -76,14 +81,16 @@ class DraftInvoice extends React.Component {
         return (
             <div>
                 <NavigationBar />
-                <h1>Draft Invoice</h1>
+                <div class = "row" id = "credit-row">
+                    <h1>Draft An Invoice</h1>
+                </div>
                     <div class = "row" id = "credit-row">
                         <div class = "col" id = "credit-col">
                             <div class = "row" id = "credit-row-label">
                                 <div class = "col"> Select Members:</div>
                             </div>
                             <div class = "row" id = "credit-row-entry">
-                                <select value={this.state.value} onChange={this.selectMembers}>
+                                <select value={this.state.value} onChange={this.selectMembers} id = "credit-row-field">
                                     <option value={-1}>Select</option>
                                     {this.props.members.map( 
                                     ({name,id}) => 
@@ -97,25 +104,31 @@ class DraftInvoice extends React.Component {
                     <div class = "row" id = "credit-row-large">
                         <div class = "col" id = "credit-col">
                             <div class = "row" id = "credit-row-label">
-                                Enter Value: {this.state.selectedAmount}
+                                Enter Value:
                             </div>
                             <div class = "row" id = "credit-row-entry">
-                                <input type="text" value={this.state.value} onChange={this.selectAmount} />
+                                <input type="number" value={this.state.value} onChange={this.selectAmount} id = "credit-row-field"/>
                             </div>
                             <div class = "row" id = "credit-row-label">
-                                Message: {this.state.selectedMessage}
+                                Message:
                             </div>
                             <div class = "row" id = "credit-row-entry">
-                                <textarea value={this.state.value} onChange={this.selectMessage} />
+                                <textarea value={this.state.value} onChange={this.selectMessage} id = "credit-row-field"/>
                             </div>
                             <div class = "row" id = "credit-row-entry">
-                                <input type="submit" value="Submit" />
+                                <input type="submit" value="Add Expense"  id = "submission-button"/>
                             </div>
                         </div>
                     </div>
                     </form>
-                    <div class = "row" id = "credit-row">
-                        <div class = "col" id = "credit-col">
+                    <div class = "row" id = "credit-row-expanding">
+                        <div class = "col" id = "credit-col-expanding">
+                            <div class = "row" id = "credit-row-label">
+                                <div class = "col"><b>Invoice Draft</b></div>
+                            </div>
+                            <div class = "row" id = "credit-row-label">
+                                <div class = "col"><b>Names:</b></div>
+                            </div>
                             <div class = "row" id = "credit-row-label">
                                 {this.state.selectedMembers.map((name) =>
                                 <div class = "col" id = "member-col">
@@ -144,10 +157,10 @@ class DraftInvoice extends React.Component {
                         </div>
                     </div>
                     <div class = "row" id = "credit-row">
-                        <div class = "col" id = "credit-col">
-                            <div class = "row" id = "credit-row-submit">
-                                <button onClick={this.submitSelected}>Submit</button>
-                            </div>
+                        <div class = "col" id = "credit-submit">
+                            {/* <div class = "row" id = "credit-row-submit"> */}
+                                <button onClick={this.submitSelected} id = "submission-button">Submit</button>
+                            {/* </div> */}
                         </div>
                     </div>
             </div>

@@ -19,7 +19,7 @@ function NavigationBar() {
     );
   };
 
-class CreditMember extends React.Component {
+class DebitMember extends React.Component {
 
     constructor(props) {
         super(props);
@@ -54,7 +54,7 @@ class CreditMember extends React.Component {
         event.preventDefault();
         for (var i = 0; i < this.state.members.length; i++) {
             if(this.state.members[i].id == this.state.selectedMember){
-                this.state.members[i].credit.push({
+                this.state.members[i].debit.push({
                     amount: this.state.selectedAmount,
                     message: this.state.selectedMessage
                 })
@@ -73,7 +73,7 @@ class CreditMember extends React.Component {
             <div>
                 <NavigationBar />
                 <div class = "row" id = "credit-row">
-                    <h1>Credit A Member</h1>
+                    <h1>Debit A Member</h1>
                 </div>
                 <form onSubmit={this.submitSelected}>
                     <div class = "row" id = "credit-row">
@@ -123,6 +123,6 @@ class CreditMember extends React.Component {
             </div>
         );
     }
-  };
+};
 
-  export default CreditMember;
+export default DebitMember;

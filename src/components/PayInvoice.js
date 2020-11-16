@@ -24,21 +24,17 @@ class InvoiceOverview extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        invoices: this.props.invoices,
-        searching: false,
-        searchedName: null
-      }
-      this.searchName = this.searchName.bind(this);
+        invoices: this.props.invoices
+      };
+
+      this.removeInvoice = this.removeInvoice.bind(this);
     }
 
-    searchName(event) {
-      if(event.target.value != ''){
-        this.setState({searchedName: event.target.value});
-        this.setState({searching: true});
-      }else{
-        this.setState({searching: false});
-      }
-      
+    removeInvoice = (event, index) => {
+        event.preventDefault();
+        var a = this.state.invoices;
+        a.splice(index, 1);
+        this.setState({invoices: a});
     }
   
     render () {
@@ -47,25 +43,15 @@ class InvoiceOverview extends React.Component {
         <div>
             <NavigationBar />
             <div class = "row" id = "credit-row">
-                <h1>Invoice Summary</h1>
+                <h1>Pay An Invoice</h1>
             </div>
-            <div class = "row" id = "live-row">
-            <div class = "col" id = "live-col-check">
-                <div class = "row" id = "live-row-check">
-                 <h3>Name Search</h3>
-                </div>
-                <div class = "row" id = "live-row-check">
-                  <textarea value={this.state.value} onChange={this.searchName} id = "credit-row-field"/>
-                </div>
-            </div>
+            <div class = "row" id = "live-row-selected">
             <div class = "col" id = "live-col-feed">
-              {this.props.invoices.length > 0 ? (
-              <div>
+            {this.props.invoices.length > 0 ? (
+                          <div>
                 {this.props.invoices.map( 
-                ({names,expenses,total}) => 
-                <div>
-                {!this.state.searching || names.includes(this.state.searchedName) ? (
-                <div id = "whole-post">
+                ({names,expenses,total}, index) => 
+                <div id = "whole-post-selected">
                     <div><br/><br/></div>
                     <div class = "row" id = "live-row-feed">
                     <div class = "col" id = "profile-msg">
@@ -100,36 +86,32 @@ class InvoiceOverview extends React.Component {
                         </div>
                         )}
                         <div class = "row" id = "credit-row-label">
-                          <div class = "col" id = "message-col-invoice">
-                          </div>
-                          <div class = "col" id = "amount-col">
-                            <br/><b>Total:</b>
-                          </div>
+                            <div class = "col" id = "message-col-invoice">
+                            </div>
+                            <div class = "col" id = "amount-col">
+                                {total}
+                            </div>
                         </div>
                         <div class = "row" id = "credit-row-label">
-                          <div class = "col" id = "message-col-invoice">
-                          </div>
-                          <div class = "col" id = "amount-col">
-                            {total}
-                          </div>
+                            <div class = "col" id = "message-col-invoice">
+                                <button onClick={(event) => this.removeInvoice(event, index)}  id = "submission-button">
+                                    Pay
+                                </button>
+                            </div>
                         </div>
                     </div>
                     </div> <br /> <br /> <br /> <br />
                 </div>
-                ) : (
-                  <div></div>
                 )}
                 </div>
+                ) : (
+                  <div id = "transaction-listing">No Invoices To Show</div>
                 )}
-              </div>
-              ) : (
-                <div id = "transaction-listing">No Invoices To Show</div>
-              )}
             </div>
             </div>
         </div>
       );
     }
-  };
+};
 
-  export default InvoiceOverview;
+export default InvoiceOverview;
