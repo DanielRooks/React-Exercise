@@ -32,7 +32,9 @@ class InvoiceOverview extends React.Component {
         blockLow: false,
         blockMedium: false,
         blockHigh: false,
-        blockCritical: false
+        blockCritical: false,
+
+        invoices: this.props.invoices
       }
     }
   
@@ -105,35 +107,44 @@ class InvoiceOverview extends React.Component {
                 </div>
             </div>
             <div class = "col" id = "live-col-feed">
-                {this.props.members.map( 
-                ({name,image,content,problem,priority,debit,credit,id}) => 
-                <div id = "whole-post" key={id}>
+                {this.props.invoices.map( 
+                ({names,expenses}) => 
+                <div id = "whole-post">
                     <div><br/><br/></div>
                     <div class = "row" id = "live-row-feed">
-                    <div class = "col" id = "profile-image">
-                        <img id = "profile-photo" src={image} alt="{name}" /> <br />
-                    </div>
-                    </div>
-                    <div class = "row" id = "live-row-feed" key={id}>
-                    <div class = "col" id = "profile-info">
-                        <b>{name} <br /></b>
-                        Problem: {problem} <br />
-                        Priority: {priority} <br />
-                        Debit: {debit.map(
-                        ({amount,message}) =>
-                          amount + ", " + message + "\n"
-                        )} <br />
-                        Credit: {credit.map(
-                        ({amount,message}) =>
-                          amount + ", " + message + "\n"
-                        )} <br />
-                    </div>
-                    </div>
-                    <div class = "row" id = "live-row-feed">
                     <div class = "col" id = "profile-msg">
-                        {content} <br /> <br /> <br /> <br />
+                      <div class = "row" id = "credit-row-label">
+                        <div class = "col" id = "message-col-invoice">
+                            <b>Names:</b>
+                        </div>
+                      </div>
+                      <div class = "row" id = "credit-row-label">
+                        {names.map((name) =>
+                        <div class = "col" id = "member-col">
+                            {name}
+                        </div>
+                        )}
+                      </div>
+                      <div class = "row" id = "credit-row-label">
+                        <div class = "col" id = "message-col-invoice">
+                            <b>Message:</b>
+                        </div>
+                        <div class = "col" id = "amount-col">
+                            <b>Amount:</b>
+                        </div>
+                      </div>
+                      {expenses.map(({amount, message}) =>
+                        <div class = "row" id = "credit-row-label">
+                            <div class = "col" id = "message-col-invoice">
+                                {message}
+                            </div>
+                            <div class = "col" id = "amount-col">
+                                {amount}
+                            </div>
+                        </div>
+                        )}
                     </div>
-                    </div>
+                    </div> <br /> <br /> <br /> <br />
                 </div>
                 )}
             </div>

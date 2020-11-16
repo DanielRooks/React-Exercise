@@ -29,7 +29,8 @@ class DraftInvoice extends React.Component {
             invoiceExpenses: [],
             selectedAmount: 0,
             selectedMessage: "none",
-            formSubmitted: false
+            formSubmitted: false,
+            invoices: this.props.invoices
         };
         this.selectMembers = this.selectMembers.bind(this);
         this.selectAmount = this.selectAmount.bind(this);
@@ -52,7 +53,7 @@ class DraftInvoice extends React.Component {
         this.setState({selectedMessage: event.target.value});
     }
 
-    submitExpense(event) {
+    submitExpense = (event) => {
         event.preventDefault();
         this.setState({invoiceExpenses: [...this.state.invoiceExpenses, {amount: this.state.selectedAmount, message: this.state.selectedMessage}]});
     }
@@ -76,18 +77,10 @@ class DraftInvoice extends React.Component {
             <div>
                 <NavigationBar />
                 <h1>Draft Invoice</h1>
-                <form onSubmit={this.submitSelected}>
                     <div class = "row" id = "credit-row">
                         <div class = "col" id = "credit-col">
                             <div class = "row" id = "credit-row-label">
-                                <div class = "col"> Selected Members:</div>
-                            </div>
-                            <div class = "row" id = "credit-row-label">
-                                {this.state.selectedMembers.map((name) =>
-                                <div class = "col" id = "member-col">
-                                    {name}
-                                </div>
-                                )}
+                                <div class = "col"> Select Members:</div>
                             </div>
                             <div class = "row" id = "credit-row-entry">
                                 <select value={this.state.value} onChange={this.selectMembers}>
@@ -100,6 +93,7 @@ class DraftInvoice extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <form onSubmit={this.submitExpense}>
                     <div class = "row" id = "credit-row-large">
                         <div class = "col" id = "credit-col">
                             <div class = "row" id = "credit-row-label">
@@ -115,19 +109,47 @@ class DraftInvoice extends React.Component {
                                 <textarea value={this.state.value} onChange={this.selectMessage} />
                             </div>
                             <div class = "row" id = "credit-row-entry">
-                                <button>Add Expense</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class = "row" id = "credit-row">
-                        <div class = "col" id = "credit-col">
-                            <div class = "row" id = "credit-row-submit">
                                 <input type="submit" value="Submit" />
                             </div>
                         </div>
                     </div>
-                </form>
+                    </form>
+                    <div class = "row" id = "credit-row">
+                        <div class = "col" id = "credit-col">
+                            <div class = "row" id = "credit-row-label">
+                                {this.state.selectedMembers.map((name) =>
+                                <div class = "col" id = "member-col">
+                                    {name}
+                                </div>
+                                )}
+                            </div>
+                            <div class = "row" id = "credit-row-label">
+                                <div class = "col" id = "message-col-invoice">
+                                    <b>Message:</b>
+                                </div>
+                                <div class = "col" id = "amount-col">
+                                    <b>Amount:</b>
+                                </div>
+                            </div>
+                            {this.state.invoiceExpenses.map(({amount, message}) =>
+                            <div class = "row" id = "credit-row-label">
+                                <div class = "col" id = "message-col-invoice">
+                                    {message}
+                                </div>
+                                <div class = "col" id = "amount-col">
+                                    {amount}
+                                </div>
+                            </div>
+                            )}
+                        </div>
+                    </div>
+                    <div class = "row" id = "credit-row">
+                        <div class = "col" id = "credit-col">
+                            <div class = "row" id = "credit-row-submit">
+                                <button onClick={this.submitSelected}>Submit</button>
+                            </div>
+                        </div>
+                    </div>
             </div>
         );
     }

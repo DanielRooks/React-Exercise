@@ -193,20 +193,20 @@ class App extends React.Component {
   render() {
     return (
       <main>
-        <div>
-          <button onClick={(event) => this.populate(event)}>
-            Populate
-          </button>
-        </div>
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/MemberBalances" render={({location}) => <MemberBalances members={this.state.members} selectedMember={this.state.selectedMember}/>} />
           <Route path="/CreditMember" render={() => <CreditMember members={this.state.members} />} />
           <Route path="/BalanceSummary" render={() => <BalanceSummary members={this.state.members} />} />
-          <Route path="/InvoiceOverview" render={() => <InvoiceOverview members={this.state.members} />} />
-          <Route path="/DraftInvoice" render={() => <DraftInvoice members={this.state.members} />} />
+          <Route path="/InvoiceOverview" render={() => <InvoiceOverview members={this.state.members} invoices={this.state.invoices}/>} />
+          <Route path="/DraftInvoice" render={() => <DraftInvoice members={this.state.members} invoices={this.state.invoices}/>} />
           <Route component={Error} />
         </Switch>
+        <div id = "bottom-right">
+          <button onClick={(event) => this.populate(event)}>
+            Populate
+          </button>
+        </div>
       </main>
     );
   }

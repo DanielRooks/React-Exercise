@@ -286,3 +286,13 @@ td {
   clip-path: polygon(10% 0%, 100% 15%, 85% 100%, 0% 85%);
   text-align: center;
 }
+
+#message-col-invoice {
+  max-width: 80%;
+}
+
+#bottom-right {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
