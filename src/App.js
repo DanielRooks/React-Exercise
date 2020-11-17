@@ -13,7 +13,7 @@ class Home extends React.Component {
   render () {
     return (
       <div>
-        {/* <NavigationBar /> */}
+        <NavigationBar />
         <div class = "row" id = "credit-row">
           <h1>I-O-U</h1>
         </div>
@@ -59,7 +59,7 @@ function NavigationBar() {
     <div>
         <h1>
           <div class = "row">
-            <div class = "col page-links-bar">
+            <div class = "col page-links-bar-special-two">
               <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Home</NavLink>
             </div>
           </div>
