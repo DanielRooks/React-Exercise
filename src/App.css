@@ -366,7 +366,7 @@ td {
 
 #member-col-small {
   background-color: rgba(255, 255, 255, 0.2);
-  clip-path: polygon(10% 0%, 100% 0%, 85% 100%, 0% 100%);
+  clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
   text-align: center;
 }
 

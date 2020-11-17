@@ -74,17 +74,26 @@ class BalanceSummary extends React.Component {
               <div class = "row" id = "credit-row">
                 <h1>Balance Summary</h1>
               </div><br />
-              <div class = "row" id = "transaction-listing">
+              {/* <div class = "row" id = "transaction-listing">
                 <h3>Overall Balance: {Number(totalDebitTally) - Number(totalCreditTally)}</h3>
               </div>
             <div class = "row" id = "transaction-listing">
                 <h3>Total Credit: {totalDebitTally}</h3></div>
             <div class = "row" id = "transaction-listing">
                 <h3>Total Debit: {totalCreditTally}</h3>
-            </div>
+            </div> */}
             <div class = "row" id = "live-row">
                 <div class = "col" id = "live-col-check">
                 <div onChange={this.onChangeOrder}>
+                <div class = "row" id = "live-row-check">
+                    <h2>Balance: {Number(totalDebitTally) - Number(totalCreditTally)}</h2>
+                  </div>
+                  <div class = "row" id = "live-row-check">
+                    <h3>Total Credit: {totalDebitTally}</h3>
+                  </div>
+                  <div class = "row" id = "live-row-check">
+                    <h3>Total Debit: {totalCreditTally}</h3>
+                  </div>
                   <div class = "row" id = "live-row-check">
                     <h3>Sort by Amount:</h3>
                   </div>

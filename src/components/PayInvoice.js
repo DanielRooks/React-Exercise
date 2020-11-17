@@ -64,7 +64,7 @@ class PayInvoice extends React.Component {
                       </div>
                       <div class = "row" id = "credit-row-label">
                         {names.map((name) =>
-                        <div class = "col" id = "member-col">
+                        <div class = "col" id = "member-col-small">
                             {name}
                         </div>
                         )}
