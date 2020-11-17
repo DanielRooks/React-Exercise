@@ -9,6 +9,7 @@ function NavigationBar() {
             <div class = "row page-links-row">
               <div class = "col page-links-bar">
                 <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Home</NavLink>
+                <NavLink to="/DebitMember" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Debit Member</NavLink>
               </div>
               <div class = "col page-links-bar">
                 <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Back</NavLink>

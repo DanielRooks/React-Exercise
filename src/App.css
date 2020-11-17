@@ -92,6 +92,21 @@ td {
   background-color: rgba(255, 255, 255, 0.2);
   text-align: center;
   clip-path: polygon(0% 0%, 85% 0%, 100% 100%, 15% 100%);
+  max-width: 100%
+}
+
+.page-links-bar-special {
+  background-color: rgba(255, 255, 255, 0.2);
+  text-align: center;
+  clip-path: polygon(0% 0%, 95% 0%, 100% 100%, 5% 100%);
+  max-width: 75%
+}
+
+.page-links-bar-special-two {
+  background-color: rgba(255, 255, 255, 0.2);
+  text-align: center;
+  clip-path: polygon(0% 0%, 85% 0%, 100% 100%, 15% 100%);
+  max-width: 25%
 }
 
 #credit-row {

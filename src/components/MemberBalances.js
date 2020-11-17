@@ -9,6 +9,7 @@ function NavigationBar() {
           <div class = "row page-links-row">
             <div class = "col page-links-bar">
               <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Home</NavLink>
+              <NavLink to="/MemberBalances" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Member Balances</NavLink>
             </div>
             <div class = "col page-links-bar">
               <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Back</NavLink>
@@ -95,15 +96,20 @@ class MemberBalances extends React.Component {
             <div>
               <h1>
                 <div class = "row page-links-row">
-                  <div class = "col page-links-bar">
+                  <div class = "col page-links-bar-special">
                     <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Home</NavLink>
+                    <NavLink to="/MemberBalances" class = "page-link" exact={true} id = "nav">Member Balances</NavLink>
+                    <NavLink to="/MemberBalances" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav" style={{color: "coral"}}>Member Transaction History</NavLink>
                   </div>
-                  <div class = "col page-links-bar">
+                  <div class = "col page-links-bar-special-two">
                     <NavLink to="/MemberBalances" class = "page-link" exact={true} id = "nav" onClick={(event) => this.closeMemberHistory(event)}>Back</NavLink>
                   </div>
                 </div>
               </h1>
             </div>
+            <div class = "row" id = "credit-row">
+              <h1>Member Transaction History</h1>
+            </div><br />
             <div class = "row" id = "live-row-selected">
               <div class = "col" id = "live-col-feed">
                   <div id = "whole-post-selected">
@@ -180,6 +186,9 @@ class MemberBalances extends React.Component {
       return (
         <div>
             <NavigationBar />
+            <div class = "row" id = "credit-row">
+              <h1>Member Balances</h1>
+            </div><br />
             <div class = "row" id = "live-row">
             <div class = "col" id = "live-col-check">
               <div onChange={this.onChangeOrder}>

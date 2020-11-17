@@ -14,6 +14,9 @@ class Home extends React.Component {
     return (
       <div>
         <NavigationBar />
+        <div class = "row" id = "credit-row">
+          <h1>I-O-U</h1>
+        </div>
         <h2>
         <div class = "row" id = "home-row">
           <div class = "col page-links-bar">

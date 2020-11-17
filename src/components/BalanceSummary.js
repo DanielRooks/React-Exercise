@@ -9,6 +9,7 @@ function NavigationBar() {
             <div class = "row page-links-row">
               <div class = "col page-links-bar">
                 <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Home</NavLink>
+                <NavLink to="/BalanceSummary" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Balance Summary</NavLink>
               </div>
               <div class = "col page-links-bar">
                 <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Back</NavLink>
@@ -70,11 +71,15 @@ class BalanceSummary extends React.Component {
       return (
         <div>
             <NavigationBar />
-              <div class = "row" id = "live-row-balance">
+              <div class = "row" id = "credit-row">
+                <h1>Balance Summary</h1>
+              </div><br />
+              <div class = "row" id = "transaction-listing">
                 <h1>Overall Balance: {Number(totalDebitTally) - Number(totalCreditTally)}</h1>
               </div>
-            <div class = "row" id = "live-row-balance">
-                <h1>Total Credit: {totalDebitTally}</h1>
+            <div class = "row" id = "transaction-listing">
+                <h1>Total Credit: {totalDebitTally}</h1></div>
+            <div class = "row" id = "transaction-listing">
                 <h1>Total Debit: {totalCreditTally}</h1>
             </div>
             <div class = "row" id = "live-row">

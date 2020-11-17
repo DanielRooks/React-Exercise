@@ -9,6 +9,7 @@ function NavigationBar() {
             <div class = "row page-links-row">
               <div class = "col page-links-bar">
                 <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Home</NavLink>
+                <NavLink to="/PayInvoice" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Pay Invoice</NavLink>
               </div>
               <div class = "col page-links-bar">
                 <NavLink to="/" class = "page-link" activeStyle={{ color: 'coral' }} exact={true} id = "nav">Back</NavLink>
@@ -19,7 +20,7 @@ function NavigationBar() {
     );
   };
 
-class InvoiceOverview extends React.Component {
+class PayInvoice extends React.Component {
 
     constructor(props) {
       super(props);
@@ -114,4 +115,4 @@ class InvoiceOverview extends React.Component {
     }
 };
 
-export default InvoiceOverview;
+export default PayInvoice;
