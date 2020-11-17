@@ -350,7 +350,7 @@ td {
   text-decoration: none;
   color:rgba(255, 255, 255, 1);
   /* background-color: aqua; */
-  width: 100%;
+  width: 50%;
 }
 
 #nav:visited {
@@ -361,6 +361,12 @@ td {
 #member-col {
   background-color: rgba(255, 255, 255, 0.2);
   clip-path: polygon(10% 0%, 100% 15%, 85% 100%, 0% 85%);
+  text-align: center;
+}
+
+#member-col-small {
+  background-color: rgba(255, 255, 255, 0.2);
+  clip-path: polygon(10% 0%, 100% 0%, 85% 100%, 0% 100%);
   text-align: center;
 }
 

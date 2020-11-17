@@ -62,6 +62,7 @@ class DebitMember extends React.Component {
             }
         }
         this.setState({formSubmitted: true});
+        window.alert("Debit Submitted");
     }
   
     render () {

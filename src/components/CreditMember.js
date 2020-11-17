@@ -62,6 +62,7 @@ class CreditMember extends React.Component {
             }
         }
         this.setState({formSubmitted: true});
+        window.alert("Credit Submitted");
     }
   
     render () {

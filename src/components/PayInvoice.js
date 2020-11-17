@@ -36,6 +36,7 @@ class PayInvoice extends React.Component {
         var a = this.state.invoices;
         a.splice(index, 1);
         this.setState({invoices: a});
+        window.alert("Invoice Paid");
     }
   
     render () {
@@ -87,17 +88,26 @@ class PayInvoice extends React.Component {
                         </div>
                         )}
                         <div class = "row" id = "credit-row-label">
-                            <div class = "col" id = "message-col-invoice">
-                            </div>
-                            <div class = "col" id = "amount-col">
-                                {total}
-                            </div>
+                          <div class = "col" id = "message-col-invoice">
+                          </div>
+                          <div class = "col" id = "amount-col">
+                            <br/><b>Total:</b>
+                          </div>
+                        </div>
+                        <div class = "row" id = "credit-row-label">
+                          <div class = "col" id = "message-col-invoice">
+                          </div>
+                          <div class = "col" id = "amount-col">
+                            {total}
+                          </div>
                         </div>
                         <div class = "row" id = "credit-row-label">
                             <div class = "col" id = "message-col-invoice">
-                                <button onClick={(event) => this.removeInvoice(event, index)}  id = "submission-button">
-                                    Pay
-                                </button>
+                            </div>
+                            <div class = "col" id = "amount-col">
+                              <button onClick={(event) => this.removeInvoice(event, index)}  id = "submission-button">
+                                Pay
+                              </button>
                             </div>
                         </div>
                     </div>

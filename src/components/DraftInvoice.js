@@ -71,6 +71,7 @@ class DraftInvoice extends React.Component {
             total: totalAmount
         })
         this.setState({formSubmitted: true});
+        window.alert("Invoice Submitted");
     }
   
     render () {

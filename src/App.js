@@ -13,7 +13,7 @@ class Home extends React.Component {
   render () {
     return (
       <div>
-        <NavigationBar />
+        {/* <NavigationBar /> */}
         <div class = "row" id = "credit-row">
           <h1>I-O-U</h1>
         </div>

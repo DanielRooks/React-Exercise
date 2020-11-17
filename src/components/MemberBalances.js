@@ -72,7 +72,7 @@ class MemberBalances extends React.Component {
           totalDebit += Number(this.props.members[i].debit[j].amount);
         }
 
-        this.props.members[i].balance = Number(totalDebit) - Number(totalCredit);
+        this.props.members[i].balance = Number(totalCredit) - Number(totalDebit);
 
         totalCredit = 0;
         totalDebit = 0;
